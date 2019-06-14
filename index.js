@@ -1,10 +1,18 @@
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 function get(aURL, aCallback) {
-  var anHttpRequest = new XMLHttpRequest();
+  const anHttpRequest = new XMLHttpRequest();
   anHttpRequest.onreadystatechange = function() {
-    if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
+    if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200) {
       aCallback(anHttpRequest.responseText);
+    }
+    if (anHttpRequest.readyState == 4 && anHttpRequest.status != 200) {
+      let error = {
+        error_code: anHttpRequest.status,
+        error_message: anHttpRequest.responseText
+      };
+      aCallback(error);
+    }
   };
   anHttpRequest.open("GET", aURL, true);
   anHttpRequest.send(null);
@@ -13,8 +21,16 @@ function get(aURL, aCallback) {
 function post(aURL, data, aCallback) {
   var anHttpRequest = new XMLHttpRequest();
   anHttpRequest.onreadystatechange = function() {
-    if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
+    if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200) {
       aCallback(anHttpRequest.responseText);
+    }
+    if (anHttpRequest.readyState == 4 && anHttpRequest.status != 200) {
+      let error = {
+        error_code: anHttpRequest.status,
+        error_message: anHttpRequest.responseText
+      };
+      aCallback(error);
+    }
   };
   anHttpRequest.open("POST", aURL, true);
   anHttpRequest.setRequestHeader("Content-Type", "application/json");
