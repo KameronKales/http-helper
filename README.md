@@ -1,4 +1,4 @@
-### kam.js (public):
+### kam.js:
 
 `kam.js` is an incredibly simple easy to implement http helper function for vanilla javascript.
 
