@@ -1,6 +1,6 @@
 {
   "name": "kam.js",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "An incredibly simple easy to implement http helper function for vanilla javascript.",
   "main": "index.js",
   "scripts": {
